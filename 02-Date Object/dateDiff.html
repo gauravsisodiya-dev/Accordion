@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Difference</title>
+    <style>
+        *{
+            padding: 0; margin: 0;box-sizing: border-box;
+        }
+        main{
+            width: 300px;
+            padding: 10px;
+            margin: 100px auto;
+            background-color: brown;
+
+        }
+        .dDiff{
+            width: 100%;
+
+        }
+        .dDiff input{
+            width: 100%;
+            padding: 6px;
+            margin-bottom: 10px;
+        }
+        .dDiff lable{
+            display: block;
+        }
+        button{
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="dDiff">
+            <lable>From Date</lable>
+            <input type="datetime-local" id="fromDate">
+        </div>
+        <div class="dDiff">
+            <lable>To Date</lable>
+            <input type="datetime-local" id="toDate">
+        </div>
+        <button>Save</button>
+    </main>
+</body>
+<script>
+    let btn = document.querySelector('button')
+    let fromDate = document.querySelector('#fromDate')
+    let toDate = document.querySelector('#toDate')
+
+    btn.addEventListener('click',()=>{
+        let fromDateObj = new Date(fromDate.value);
+        let toDateObj = new Date(toDate.value);
+
+        // let fromDateMil = fromDateObj.getTime();
+        // let toDateMil = toDateObj.getTime();
+
+        // let abc = toDateObj-fromDateObj;
+        // console.log(abc)
+
+        let convertToSec = (toDateObj-fromDateObj)/1000;
+        // console.log(convertToSec)
+
+        let oneMin = 60;  //60 second
+        let oneHour = oneMin*60;   //3600 second
+        let oneDay = oneHour*24;  // 86400 second
+
+        let finalDays = Math.floor(convertToSec/oneDay);
+
+        let remindSec = convertToSec % oneDay;
+        let finalHour = Math.floor(remindSec/oneHour);
+
+        let remindMinute = remindSec % oneHour;
+        let finalMin = Math.floor(remindMinute/oneMin)
+
+        // console.log(remindMinute)
+
+        console.log('Days- '+finalDays)
+        console.log('Hour- '+finalHour)
+        console.log('minuts- '+finalMin)
+    })
+</script>
+</html>

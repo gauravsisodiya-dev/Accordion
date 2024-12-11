@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Age Calculator Using JavaScript</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      body {
+        background-color: #ffa502;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      main {
+        width: 450px;
+      }
+      .heading {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .box1 {
+        width: 100%;
+        background-color: black;
+        padding: 20px;
+        border-radius: 7px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 50px;
+      }
+      .box1 input {
+        width: 70%;
+        padding: 12px 6px;
+        font-size: 18px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+      }
+      .box1 button {
+        padding: 12px 6px;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .box2 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 100px;
+        gap: 25px;
+        color: white;
+      }
+      .box2_innerDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 5px;
+        background-color: black;
+        border-radius: 7px;
+      }
+      .box2_innerDiv span {
+        color: #6b6d68;
+      }
+      .box2_innerDiv div {
+        font-size: 30px;
+        letter-spacing: 1.5px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="heading">Age Calculator</h1>
+      <div class="box1">
+        <input type="date" id="userDate" />
+        <button id="btn">Calculate</button>
+      </div>
+      <div class="box2">
+        <div class="box2_innerDiv">
+          <div id="years">00</div>
+          <span>Years</span>
+        </div>
+        <div class="box2_innerDiv">
+          <div id="months">00</div>
+          <span>Months</span>
+        </div>
+        <div class="box2_innerDiv">
+          <div id="days">00</div>
+          <span>Days</span>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    const userDate = document.getElementById("userDate");
+    const btn = document.getElementById("btn");
+    let allMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    btn.addEventListener("click", () => {
+      let currentDate = new Date();
+      let userDateObj = new Date(userDate.value);
+
+      let usedetails = {
+        date: userDateObj.getDate(),
+        month: userDateObj.getMonth() + 1,
+        year: userDateObj.getFullYear(),
+      };
+
+      let cYear = currentDate.getFullYear();
+      let cMonth = currentDate.getMonth() + 1;
+      let cDate = currentDate.getDate();
+
+      leepCheakerYear(cYear);
+
+      if (usedetails.month > cMonth) {
+        let finalMonth = usedetails.month - cMonth;
+        document.getElementById("months").innerText = finalMonth;
+      } else {
+        let finalMonth = cMonth - usedetails.month;
+        document.getElementById("months").innerText = finalMonth;
+      }
+
+      if (usedetails.date > cDate) {
+        let finalDays = usedetails.date - cDate;
+        document.getElementById("days").innerText = finalDays;
+      } else {
+        let finalDays = cDate - usedetails.date;
+        document.getElementById("days").innerText = finalDays;
+      }
+
+      let finalYear = cYear - usedetails.year;
+      document.getElementById("years").innerText = finalYear;
+
+    //   let finalMonth = cMonth - usedetails.month;
+    //   document.getElementById("months").innerText = finalMonth;
+
+    //   let finalDays = cDate - usedetails.date;
+    //   document.getElementById("days").innerText = finalDays;
+
+      //   let diffInToSec = (currentDate - userDateObj) / 1000;
+
+      //   let oneMin = 60; //60 sec
+      //   let oneHour = oneMin * 60; // 3600 sec
+      //   let oneDay = oneHour * 24; // 86400 sec
+      //   let oneMonth = oneDay * 31; // 2592000 sec
+      //   let oneYear = oneDay * 365; // 32140800 sec  31536000
+
+      //   let finalYear = Math.floor(diffInToSec / oneYear);
+      //   let finalMonth = Math.floor((diffInToSec % oneYear) / oneMonth);
+      //   let finalDays = Math.floor((diffInToSec % oneMonth) / oneDay);
+      //   let totalMonth = Math.floor(diffInToSec / oneMonth);
+
+      //   document.getElementById("years").innerText = finalYear;
+      //   document.getElementById("months").innerText = finalMonth;
+      //   document.getElementById("days").innerText = finalDays;
+
+      // console.log(finalYear)
+      // console.log(finalMonth)
+      // console.log(finalDays)
+      // console.log(totalMonth)
+
+      function leepCheakerYear(year) {
+        if (year % 4 == 0 || (year % 100 == 0 && year % 400 == 0)) {
+          allMonths[1] = 29;
+        } else {
+          allMonths[1] = 28;
+        }
+      }
+    });
+  </script>
+</html>

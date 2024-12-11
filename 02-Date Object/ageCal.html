@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Age Calculator</title>
+    <style>
+        *{
+            padding: 0; margin: 0; box-sizing: border-box;
+        }
+        main{
+            width: 300px;
+            padding: 10px;
+            background-color: salmon;
+            margin: 50px auto;
+        }
+        .innerDiv{
+            width: 100%;
+        }
+        .innerDiv label{
+            display: block;
+            margin-bottom: 5px;
+        }
+        .innerDiv input{
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        button{
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="innerDiv">
+        <label for="">Salect your Date Of Birth</label>
+        <input type="date" id="userAge" />
+      </div>
+      <button onclick="getAge()">Get Age</button>
+    </main>
+  </body>
+  <script>
+    const userAge = document.getElementById('userAge');
+    function getAge(){
+        let currentDate = new Date();
+        let useSelectDate = new Date(userAge.value);
+        
+        let dateDiff = currentDate-useSelectDate;   //milliSecond
+        let convertToSecond = dateDiff/1000;
+        
+        let year = Math.floor(convertToSecond/(60*60*24*365.25))
+        let month = Math.floor(convertToSecond % (60*60*24*365.25)/(60*60*24*30))
+        let totalMonth = Math.floor(convertToSecond/(60*60*24*30))
+        let days = Math.floor(convertToSecond%(60*60*24*30)/(60*60*24))
+        console.log(year)
+        console.log(month)
+        console.log(days)
+        console.log(totalMonth)
+        console.log(convertToSecond)
+    }
+  </script>
+</html>

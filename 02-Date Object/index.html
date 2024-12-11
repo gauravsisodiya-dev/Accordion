@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Object Different </title>
+    <style>
+        *{
+            padding: 0; margin: 0; box-sizing: border-box;
+        }
+        main{
+            width: 300px;
+            padding: 10px;
+            margin: 100px auto;
+            background-color: aquamarine;
+        }
+        .dateDiff label{
+            display: block;
+        }
+        .dateDiff{
+            width: 100%;
+            margin-bottom: 15px;
+            
+        }
+        .dateDiff input{
+            width: 100%;
+            padding: 5px;
+        }
+        button{
+            padding: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="dateDiff">
+            <label for="">From Date</label>
+            <input type="datetime-local" id="fromDate">
+        </div>
+        <div class="dateDiff">
+            <label for="">To Date</label>
+            <input type="datetime-local" id="toDate">
+        </div>
+        <button id="btn">Save</button>
+    </main>
+</body>
+<script>
+    let fromDate = document.querySelector('#fromDate')
+    let toDate = document.querySelector('#toDate')
+    let btn = document.querySelector('#btn')
+
+    btn.addEventListener('click',()=>{
+        let fDateObj =new Date(fromDate.value);
+        let tDateObj =new Date(toDate.value);
+        let fDateObjMil = fDateObj.getTime();  //milliseconds
+        let tDateObjMil = tDateObj.getTime();  //milliseconds
+
+        let fDatetDateDiffConSec = (tDateObjMil-fDateObjMil)/1000;
+
+        let oneMinSec = 60; //sec
+        let oneHourSec = oneMinSec*60;
+        let oneDaySec = oneHourSec*24;
+        let oneMonth = oneDaySec*30;
+        let oneYear = oneMonth*12;
+
+        console.log(oneYear)
+
+
+        let finalDays = Math.floor(fDatetDateDiffConSec/oneDaySec);
+
+        let remindSec = fDatetDateDiffConSec % oneDaySec;
+        let finalHour = Math.floor(remindSec/oneHourSec);
+
+        let reSec = fDatetDateDiffConSec % oneHourSec;
+        let finalMin = Math.floor(reSec/oneMinSec)
+
+        // let reSeca = fDatetDateDiffConSec%oneYear;
+        let fMonth = Math.floor(fDatetDateDiffConSec/oneMonth)
+
+        // console.log(reSec)
+
+        // console.log('reSec-'+ remindSec)
+
+        // console.log('fDays-'+finalDays)
+        // console.log('fHour-'+finalHour)
+        // console.log('fMin-'+finalMin)
+        console.log('fMonth- '+ fMonth)
+
+    })
+</script>
+</html>
