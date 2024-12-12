@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Box Using Javascript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <style>
+        *{
+            padding: 0; margin: 0; box-sizing: border-box;
+        }
+        main{
+            width: 900px;
+            margin: 50px auto;
+            border: 1px solid red;
+            padding: 15px;
+            position: relative;
+        }
+        .innerDiv{
+            width: 100%;
+        }
+        .innerDiv img{
+            width: 30%;
+            height: 150px;
+            margin: 1.5%;
+            cursor: pointer;
+        }
+        .box{
+            width: 450px;
+            height: 300px;
+            position: absolute;
+            top: 25%;
+            left: 225px;
+            transform: scale(0);
+            transition: 1s ease-in-out;
+        }
+        #imgSave{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-color: white;
+            background-image: url('./../images/1.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 10px;
+        }
+        .del{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 25px;
+            cursor: pointer;
+            background-color: red;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="innerDiv">
+            <img src="./../images/1.jpg" alt="">
+            <img src="./../images/2.jpg" alt="">
+            <img src="./../images/3.jpg" alt="">
+            <img src="./../images/4.jpg" alt="">
+            <img src="./../images/5.jpg" alt="">
+            <img src="./../images/6.jpg" alt="">
+            <img src="./../images/7.jpg" alt="">
+            <img src="./../images/8.jpg" alt="">
+            <img src="./../images/9.jpg" alt="">
+        </div>
+        <div class="box" id="box">
+            <div id="imgSave">
+                <i class="del fa-solid fa-xmark" id="delet"></i>
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    const img = document.querySelectorAll('img');
+    const imgSave = document.getElementById('imgSave');
+    const delet = document.getElementById('delet');
+    const box = document.getElementById('box');
+    img.forEach((items,index)=>{
+        items.addEventListener('click',()=>{
+            imgSave.style.backgroundImage = `url(${items.src})`;
+            box.style.transform = 'scale(1)'
+        })
+    })
+    delet.addEventListener('click',()=>{
+        box.style.transform = 'scale(0)'
+        box.style.transition = '1s'
+    })
+</script>
+</html>

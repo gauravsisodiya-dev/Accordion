@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digit Counter In Javscript</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      main {
+        width: 450px;
+        margin: 50px auto;
+        border: 1px solid red;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 25px;
+      }
+      #digit {
+        width: 100px;
+        height: 100px;
+        background-color: cyan;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+      }
+      button {
+        padding: 10px 20px;
+        margin-left: 25px;
+        font-size: 18px;
+        border: 1px solid black;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="digit">0</div>
+      <div class="btn">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+      </div>
+    </main>
+  </body>
+  <script>
+    const allBtn = document.querySelectorAll("button");
+    const digit = document.getElementById("digit");
+
+    let start = document.getElementById('start');
+    let stop = document.getElementById('stop');
+    let reset = document.getElementById('reset');
+
+    reset.addEventListener('click',()=>{
+        digit.innerText = '0';
+    
+    })
+
+
+    var x;
+    start.addEventListener('click', ()=>{
+        // reset.style.pointerEvents = 'fill';
+        // stop.style.pointerEvents = 'fill';
+        let value = digit.innerText;
+        x = setInterval(()=>{
+            value++;
+            digit.innerText = value;
+        },1000)
+    })
+
+    stop.addEventListener('click',()=>{
+        clearInterval(x)
+        // start.style.pointerEvents = 'fill';
+    })
+
+    
+  </script>
+</html>
