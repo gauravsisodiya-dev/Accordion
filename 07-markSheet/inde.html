@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet using Javascript</title>
+    <style>
+        *{
+            padding: 0; margin: 0; box-sizing: border-box; font-family: sans-serif;
+        }
+        main{
+            width: 1005;
+            height: 100vh;
+            padding: 50px;
+            background-color: goldenrod;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            position: relative;
+
+        }
+        .form{
+            width: 50%;
+            padding: 10px;
+            background-color: rgb(252, 181, 1);
+            box-shadow: 0px 0px 10px white;
+            border-radius: 20px;
+        }
+        .table{
+            width: 50%;
+            padding: 10px;
+            background-color: rgb(252, 181, 1);
+            box-shadow: 0px 0px 10px white;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* position: absolute;
+            transform: scale(0);
+            opacity: 0;
+            transition:all 2s linear; */
+            /* display: none; */
+        }
+        .subjects{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .subjects input{
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+        #btn{
+            padding: 10px 20px;
+            border: none;
+            background-color: black;
+            color: white;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+         .tableData,th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            color: white;
+            font-size: 20px;
+        }
+        .active{
+            position: absolute;
+            transform: scale(1);
+            transition:all 1s ease;
+        }
+        .inActive{
+            position: absolute;
+            transform: scale(0);
+            transition:all 1s ease;
+        }
+        #download{
+            padding: 10px 20px;
+            margin: 25px;
+            border: none;
+            background-color: black;
+            color: white;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .download{
+            padding: 10px 20px;
+            margin: 25px;
+            border: none;
+            background-color: black;
+            color: white;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="form active">
+            <form action="" id="myForm">
+                <h1 style="text-align: center; margin: 20px;">12th Marksheet</h1>
+                <div class="subjects">
+                    <input name="Hindi" type="number" placeholder="Hindi Marks...?">
+                    <input name="English" type="number" placeholder="English Marks...?">
+                    <input name="Math" type="number" placeholder="Math Marks...?">
+                    <input name="Chemistry" type="number" placeholder="Physics Marks...?">
+                    <input name="Physics" type="number" placeholder="Chemistry Marks...?">
+                </div> 
+                <div style="text-align: center; margin: 25px;"><Button id="btn">Check Result</Button></div>               
+            </form>
+        </div>
+        <div class="table inActive">
+            <h1 style="text-align: center; margin: 20px;">12th Marksheet Result</h1>
+            <table class="tableData">
+                <thead>
+                    <th>S No.</th>
+                    <th>Subjects</th>
+                    <th>Marks</th>
+                    <th>Percentage</th>
+                    
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td class="sNo">01</td>
+                        <td class="sub">Hindi</td>
+                        <td class="mark">00</td>
+                        <td rowspan="2" style="text-align: center;" id="per">00%</td>
+                    </tr>
+                    <tr>
+                        <td class="sNo">02</td>
+                        <td class="sub">English</td>
+                        <td class="mark">00</td>
+                    </tr>
+                    <tr>
+                        <td class="sNo">03</td>
+                        <td class="sub">Math</td>
+                        <td class="mark">00</td>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td class="sNo">04</td>
+                        <td class="sub">Chemistry</td>
+                        <td class="mark">00</td>
+                        <td rowspan="3" style="text-align: center;" id="division"></td>
+                    </tr>
+                    <tr>
+                        <td class="sNo">05</td>
+                        <td class="sub">Physics</td>
+                        <td class="mark">00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center; font-weight: bold;" id="total">Total Marks</td>
+                        <td id="tMark">00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div><button id="download">Download Marksheet</button> <button class="download">Exit>>></button></div>
+        </div>
+    </main>
+</body>
+<script src="script.js"></script>
+</html>
