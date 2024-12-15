@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Lights in Javascript</title>
+    <style>
+        *{
+            padding: 0; margin: 0; box-sizing: border-box; font-family: sans-serif;
+        }
+        main{
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .box{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            flex-direction: column;
+            border: 2px solid black;
+            border-radius: 5px;
+            width: 120px;
+            padding: 10px;
+        }
+
+        .boxes{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 35px;
+            font-weight: bold;
+            background-color: black;
+        }
+        .btns{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+            font-size: 20px;
+            margin: 20px;
+            cursor: pointer;
+        }
+        .btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="box">
+            <div class=" boxes">0</div>
+            <div class=" boxes">0</div>
+            <div class=" boxes">0</div>
+        </div>
+        <div class="btn">
+            <button class="btns ">Start</button>
+            <button class="btns ">Stop</button>
+        </div>
+    </main>
+</body>
+<script>
+    const boxes = document.querySelectorAll('.boxes');
+    const btns = document.querySelectorAll('.btns');
+
+    let x;
+
+    btns[0].addEventListener('click',function start(){
+        x= setInterval(()=>{
+            let y = boxes[0].innerText;
+            let z = boxes[1].innerText;
+            let xy = boxes[2].innerText;
+
+            if(y < 10){
+                y++;
+                boxes[0].innerText= y;
+                boxes[0].style.backgroundColor = 'red'
+            } else if(z < 10 ){
+                z++;
+                boxes[0].style.backgroundColor = 'black'
+                boxes[1].style.backgroundColor = 'yellow'
+                boxes[1].innerText= z
+            } else if(xy < 10){
+                xy++;
+                boxes[1].style.backgroundColor = 'black'
+                boxes[2].style.backgroundColor = 'green'
+                boxes[2].innerText = xy;
+            } else if((xy == 10) || (y == 10) || (z == 10)){
+                boxes[2].style.backgroundColor = 'black'
+                boxes[0].innerText = 0;
+                boxes[1].innerText = 0;
+                boxes[2].innerText = 0;
+            }
+
+        },1000);
+    })
+
+    btns[1].addEventListener('click',()=>{
+        clearInterval(x)
+    })
+
+     
+
+</script>
+</html>
