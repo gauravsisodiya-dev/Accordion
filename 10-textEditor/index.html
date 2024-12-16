@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Editor in Javascript</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+    <main>
+        <div class="box1">
+            <div class="div1">
+                <input value="16" min="1" max="50" type="number" onchange="f1(this)">
+            </div>
+            <div class="div2">
+                <button><i class="fa-solid fa-bold"></i></button>
+                <button><i class="fa-solid fa-italic"></i></button>
+                <button><i class="fa-solid fa-underline"></i></button>
+            </div>
+            <div class="div3">
+                <button><i class="fa-solid fa-align-left"></i></button>
+                <button><i class="fa-solid fa-align-center"></i></button>
+                <button><i class="fa-solid fa-align-right"></i></button>
+            </div>
+            <div class="div4">
+                <button>aA</button>
+                <button><i class="fa-solid fa-text-slash"></i></button>
+                <input type="color" onchange="color(this)">
+            </div>
+        </div>
+        <div class="box2">
+            <textarea name="" id="textarea"></textarea>
+        </div>
+    </main>
+</body>
+<script src="script.js"></script>
+</html>
