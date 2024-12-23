@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box; font-family: sans-serif;
+        }
+        main{
+            width: 500px;
+            padding: 20px;
+            margin: 50px auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            border-radius: 5px;
+
+        }
+        .addTaskItem{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .inp{
+            width: 75%;
+            padding:7px 10px;
+            font-size: 18px;
+            border-radius: 4px;
+        }
+        .btn{
+            outline: none;
+            border-radius: 4px;
+            padding:7px 10px;
+            font-size: 18px;
+            color: #fff;
+            background-color: goldenrod;
+            border: none;
+            cursor: pointer;
+        }
+        .taskContent{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+            padding: 7px 0px;
+        }
+        .taskText{
+            font-size: 20px;
+        }
+        .delete{
+            outline: none;
+            border-radius: 4px;
+            padding:5px 10px;
+            font-size: 18px;
+            color: #fff;
+            background-color: rgb(237, 53, 53);
+            border: none;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        input[type = 'checkbox']{
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="addTaskItem">
+            <input type="text" class="inp" autofocus placeholder="Add Task...">
+            <button class="btn">Add Task</button>
+        </div>
+        <div class="addTask" id="addTask">
+            <!-- <div class="taskContent">
+                <input type="checkbox">
+                <div class="taskText">Hello </div>
+                <button class="delete">Delete</button>
+            </div> -->
+        </div>
+    </main>
+</body>
+<script>
+    let addInp = document.querySelector('.inp');
+    let addBtn = document.querySelector('.btn');
+    let addTask = document.getElementById('addTask');
+    addBtn.addEventListener('click',()=>{
+        if(addInp.value != ''){
+            let inpValue = addInp.value;
+            let getData = JSON.parse(localStorage.getItem('newToDo')) ?? [];
+            getData.push(inpValue);
+            localStorage.setItem('newToDo', JSON.stringify(getData))
+            showData()
+            // let newTask;
+            // let newTask = `
+            // <div class="taskContent">
+            //     <input type="checkbox">
+            //     <div class="taskText">${inpValue} </div>
+            //     <button class="delete">Delete</button>
+            // </div>
+            // `
+            // addTask.innerHTML += newTask;
+        } else{
+            alert('Input Filed Blanck!')
+        }
+        addInp.value = '';
+        // let delBtn = document.querySelectorAll('.delete');
+        // delBtn.forEach((v,i)=>{
+        //     v.addEventListener('click',()=>{
+        //         v.parentNode.remove()
+        //     })
+        // })
+    })
+    let showData = ()=>{
+        let todoData = JSON.parse(localStorage.getItem('newToDo')) ?? [];
+        let newTask = '';
+        todoData.forEach((v,i) => {
+             newTask += `
+            <div class="taskContent">
+                <input type="checkbox">
+                <div class="taskText">${v} </div>
+                <button onclick="removeToDo(${i})" class="delete">Delete</button>
+            </div>
+            `
+        });
+        addTask.innerHTML = newTask;
+    }
+
+    let removeToDo = (i)=>{
+        let todoListItem = JSON.parse(localStorage.getItem('newToDo')) ?? [];
+        todoListItem.splice(i, 1);
+        localStorage.setItem('newToDo', JSON.stringify(todoListItem))
+        showData()
+
+    }
+
+    showData()
+
+
+
+    // addInp.addEventListener('keyup',(event)=>{
+    //     if(event.key == 'Enter'){
+    //         if(addInp.value != ''){
+    //             let inpValue = addInp.value;
+    //             let newTask = `
+    //         <div class="taskContent">
+    //             <input type="checkbox">
+    //             <div class="taskText">${inpValue} </div>
+    //             <button class="delete">Delete</button>
+    //         </div>
+    //         `
+    //         addTask.innerHTML += newTask;
+
+    //         } else{
+    //             alert('Input Filed Blanck!')
+    //         }
+            
+    //         addInp.value = '';
+
+    //         let delBtn = document.querySelectorAll('.delete');
+    //         delBtn.forEach((v,i)=>{
+    //             v.addEventListener('click',()=>{
+    //                 v.parentNode.remove()
+    //             })
+    //         })
+    //     }
+    // })
+    
+</script>
+</html>
